@@ -7,6 +7,8 @@ import { PagesModule } from './pages/pages.module';
 import { APP_ROUTES_MODULE } from './app.routes';
 
 import { AppComponent } from './app.component';
+import { GraphQLModule } from './graphql.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     PagesModule,
-    APP_ROUTES_MODULE
+    APP_ROUTES_MODULE,
+    GraphQLModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
