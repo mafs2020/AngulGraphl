@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nabvar.component.css']
 })
 export class NabvarComponent implements OnInit {
-
+  navbarOpen = false;
   constructor() { }
 
   ngOnInit() {
+  }
+  toggleNavbar(): void{
+    this.navbarOpen = !this.navbarOpen;
   }
 
 }

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { PAGES_ROUTES_MODULE } from './pages.routes';
 
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+
 import { DashboarComponent } from "./dashboard/dashboard.component";
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { NabvarComponent } from './nabvar/nabvar.component';
@@ -17,7 +19,9 @@ import { EditarComponent } from './editar/editar.component';
   ],
   imports: [
     CommonModule,
-    PAGES_ROUTES_MODULE
+    PAGES_ROUTES_MODULE,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class PagesModule { }

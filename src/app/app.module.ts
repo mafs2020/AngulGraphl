@@ -6,6 +6,8 @@ import { PagesModule } from './pages/pages.module';
 //rutas root
 import { APP_ROUTES_MODULE } from './app.routes';
 
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+
 import { AppComponent } from './app.component';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,7 +21,9 @@ import { HttpClientModule } from '@angular/common/http';
     PagesModule,
     APP_ROUTES_MODULE,
     GraphQLModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
