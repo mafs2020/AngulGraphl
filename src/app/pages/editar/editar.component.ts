@@ -5,7 +5,7 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { Subscription } from 'rxjs';
 import { IUsuario } from '../interfaces/IUsuario';
-import { FormControl, FormGroup, FormBuilder, Validators, AbstractControl, FormArray } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, AbstractControl, FormArray } from "@angular/forms";
 
 function compararPassword(c: AbstractControl): { [key: string]: boolean } | null {
   const password = c.get('password1');

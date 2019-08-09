@@ -1,4 +1,7 @@
 <!-- <div class="row justify-content-between"> -->
+<div class="mt-3 float-right">
+  <a routerLink="/add" class="btn btn-success">Agregar Usuario</a>
+</div>
 <div class="row">  
   <div class="card" style="width: 18rem;" *ngFor="let usuario of usuarios">
       <div class="card-body">
@@ -18,7 +21,7 @@
       </div>
     </div> -->
     <div class="card-footer text-white d-flex justify-content-between">
-        <a [routerLink]="['/', usuario.id]" class="btn btn-secondary">Editar</a>
+        <a [routerLink]="['edit', usuario.id]" class="btn btn-secondary">Editar</a>
         <button class="btn btn-danger" (click)="eliminar(usuario.id)">Eliminar</button>
       </div>
   </div>

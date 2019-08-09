@@ -10,6 +10,7 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { NabvarComponent } from './nabvar/nabvar.component';
 import { EditarComponent } from './editar/editar.component';
 import { ModalComponent } from './modal/modal.component';
+import { AddUsuarioComponent } from './add-usuario/add-usuario.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ModalComponent } from './modal/modal.component';
     NabvarComponent,
     EditarComponent,
     ModalComponent,
+    AddUsuarioComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,121 @@
+<div class="d-flex justify-content-center">
+        <form class="col-md-5" [formGroup]="formUsuario">
+                <!-- <form class="col-md-5" [formGroup]="formUsuario" (ngSubmit)="onSubmit()"> -->
+                <!-- [formGroup]="formUsuario" -->
+            <div class="form-group">
+                <label for="exampleInputEmail1">Usuario</label>
+                <input formControlName="nombre" [ngClass]="{'form-control': true, 'is-invalid': (!formUsuario.get('nombre').valid && formUsuario.get('nombre').dirty), 'is-valid': formUsuario.get('nombre').valid}" id="exampleInputEmail1" placeholder="nombre">
+                <div *ngIf="formUsuario.get('nombre').hasError('required') && !formUsuario.get('nombre').pristine && formUsuario.get('nombre').dirty" class="invalid-feedback" style="display: block">El campo es requerido.</div>
+                <!-- <div *ngIf="formUsuario.get('nombre').hasError('required') && !formUsuario.get('nombre').pristine" class="mt-1 form-text text-muted">El campo es requerido.</div> -->
+            </div>
+        
+            <div class="form-group">
+                <label for="exampleInputPassword1">Edad</label>
+                <input formControlName="edad" [ngClass]="{'form-control': true, 'is-invalid': (!formUsuario.get('edad').valid && formUsuario.get('edad').dirty), 'is-valid': formUsuario.get('edad').valid}" type="number" placeholder="edad">
+                <!-- <small *ngIf="formUsuario.get('edad').errors?.required && !formUsuario.get('edad').pristine" class="form-text text-muted">El campo es requerido</small> -->
+                <div *ngIf="formUsuario.get('edad').hasError('required') && !formUsuario.get('edad').pristine" class="invalid-feedback" style="display: block">El campo es requerido.</div>
+                <div *ngIf="formUsuario.get('edad').errors?.min && !formUsuario.get('edad').pristine" class="invalid-feedback">el minimo es 18</div>
+                <div *ngIf="formUsuario.get('edad').errors?.max && !formUsuario.get('edad').pristine" class="invalid-feedback">el maximo es 50</div>
+            </div>
+        
+            <div class="row">
+            <div class="input-group-prepend">
+                    <label>Telefon</label>
+                <div class="input-group-text">
+                    <input type="radio" formControlName="tel" class="with-gap" value="Telefono" type="radio" name="tel" (click)="validaciones('Telefono')">
+                </div>
+            </div>
+            <div class="input-group-prepend">
+                    <label>Correo</label>
+                <div class="input-group-text">
+                    <input type="radio" formControlName="tel" class="with-gap" value="Correo" type="radio" name="tel" (click)="validaciones('Correo')">
+                </div>
+            </div>
+        </div>
+            <div class="form-group">
+                    
+                    
+                <label>Telefono</label>
+                <input formControlName="telOEmail" class="form-control">
+                <div *ngIf="formUsuario.get('telOEmail').hasError('required') && !formUsuario.get('telOEmail').pristine && formUsuario.get('telOEmail').dirty" class="invalid-feedback" style="display: block">El campo es requerido.</div>
+                <!-- <div *ngIf="formUsuario.get('nombre').hasError('required') && !formUsuario.get('nombre').pristine" class="mt-1 form-text text-muted">El campo es requerido.</div> -->
+            </div>
+            
+            <div formGroupName="comparar">
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" formControlName="password1" [ngClass]="{'form-control': true, 'is-invalid': (!formUsuario.get('comparar').get('password1').valid && formUsuario.get('comparar').get('password1').dirty), 'is-valid': formUsuario.get('comparar').get('password1').valid}" id="exampleInputPassword1" placeholder="Password">
+                    <div *ngIf="formUsuario.get('comparar.password1').hasError('required') && !formUsuario.get('comparar').get('password1').pristine" class="invalid-feedback" style="display: block">El campo es requerido.</div>
+                    <div *ngIf="formUsuario.get('comparar').errors?.igual" class="invalid-feedback" style="display: block">Las contraseñas son diferentes</div>
+                </div>
+                <div class="form-group">
+                        <label for="exampleInputPassword2">Repetir Password</label>
+                        <input type="password" formControlName="password2" [ngClass]="{'form-control': true, 'is-invalid': (!formUsuario.get('comparar').get('password2').valid && formUsuario.get('comparar').get('password2').dirty), 'is-valid': formUsuario.get('comparar').get('password2').valid}" id="exampleInputPassword2" placeholder="Password">
+                        <div *ngIf="formUsuario.get('comparar').get('password2').hasError('required') && !formUsuario.get('comparar').get('password2').pristine && formUsuario.get('comparar').get('password2').dirty" class="invalid-feedback" style="display: block">El campo es requerido.</div>
+                    </div>
+            </div>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" [disabled]="!formUsuario.valid" (click)="crearUsuario()" style="height: 40px;" class="btn btn-info btn-block">Editar</button>
+                </div>
+                <!-- <div class="d-flex justify-content-center">
+                    <button (click)="addDireccion()" style="height: 40px;" class="btn btn-secondary">Agregar direccion</button>
+                </div> -->
+        </form>
+        <!-- <pre> -->
+            <!-- este es todo el valor de formgroup -->
+                <!-- {{ formUsuario.value | json }} -->
+                <!-- status : {{  formUsuario.status }}
+                parent : {{  formUsuario.parent }}
+                status : {{  formUsuario.status }}
+                valid : {{  formUsuario.valid }}
+                invalid : {{  formUsuario.invalid }}
+                pending : {{  formUsuario.pending }}
+                disabled : {{  formUsuario.disabled }}
+                enabled : {{  formUsuario.enabled }}
+                errors : {{  formUsuario.errors }}
+                pristine : {{  formUsuario.pristine }}
+                dirty : {{  formUsuario.dirty }}
+                touched : {{  formUsuario.touched }}
+                untouched : {{  formUsuario.untouched }} -->
+        
+                <!-- este es el campo de password
+                nombre: {{ formUsuario.get('comparar').get('password2').value | json }}
+                status : {{ formUsuario.get('comparar').get('password2').status }}
+                parent : {{ formUsuario.get('comparar').get('password2').parent }}
+                status : {{ formUsuario.get('comparar').get('password2').status }}
+                valid : {{ formUsuario.get('comparar').get('password2').valid }}
+                invalid : {{ formUsuario.get('comparar').get('password2').invalid }}
+                pending : {{ formUsuario.get('comparar').get('password2').pending }}
+                disabled : {{ formUsuario.get('comparar').get('password2').disabled }}
+                enabled : {{ formUsuario.get('comparar').get('password2').enabled }}
+                errors : {{ formUsuario.get('comparar').get('password2').errors | json }}
+                pristine : {{ formUsuario.get('comparar').get('password2').pristine }}
+                dirty : {{ formUsuario.get('comparar').get('password2').dirty }}
+                touched : {{ formUsuario.get('comparar').get('password2').touched }}
+                untouched : {{ formUsuario.get('comparar').get('password2').untouched }} -->
+        
+                <!-- este es el formgroup de comparar -->
+                <!-- nombre: {{ formUsuario.get('comparar').value | json }} -->
+                <!-- status : {{ formUsuario.get('comparar').status }}
+                parent : {{ formUsuario.get('comparar').parent }}
+                status : {{ formUsuario.get('comparar').status }}
+                valid : {{ formUsuario.get('comparar').valid }}
+                invalid : {{ formUsuario.get('comparar').invalid }}
+                pending : {{ formUsuario.get('comparar').pending }}
+                disabled : {{ formUsuario.get('comparar').disabled }}
+                enabled : {{ formUsuario.get('comparar').enabled }}
+                errors : {{ formUsuario.get('comparar').errors | json }}
+                pristine : {{ formUsuario.get('comparar').pristine }}
+                dirty : {{ formUsuario.get('comparar').dirty }}
+                touched : {{ formUsuario.get('comparar').touched }}
+                untouched : {{ formUsuario.get('comparar').untouched }} -->
+        
+            <!-- </pre> -->
+        </div>
+        
+        <!-- <div class="col-md-6 mb-3">
+            <input type="text" class="form-control is-invalid">
+            <div class="invalid-feedback">
+                Please provide a valid city.
+            </div>
+        </div> -->

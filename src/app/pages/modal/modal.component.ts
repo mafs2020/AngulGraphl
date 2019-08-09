@@ -30,6 +30,7 @@ export class ModalComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    // se suscribe para mostra el modal
     this.modalServices.data.subscribe(data => {
       this.id = data;
       console.log( this.id );
@@ -47,6 +48,7 @@ export class ModalComponent implements OnInit {
       }
     }).subscribe(({ data }) => {
       console.log(data);
+      this.modalServices.eliminarUsuario.emit( this.id );
     },(error) => {
       console.log(error);
     },() => this.modalServices.mostrarModal = !this.modalServices.mostrarModal);

@@ -36,9 +36,14 @@ export class UsuariosComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit() {
+    this.usuariosAll();
+    this.modalServices.eliminarUsuario.subscribe(id => this.usuarios = this.usuarios.filter(user => user.id != id));
+  }
+  usuariosAll(){
     this.querySubscription = this.apollo.watchQuery<any>({
       query: Usuarios
     }).valueChanges.subscribe(({data, loading}) => {
+      console.log('aqui');
       this.usuarios = data.usuarios;
       this.total = data.total;
       console.log(data);
@@ -46,16 +51,13 @@ export class UsuariosComponent implements OnInit, OnDestroy {
       this.currentUser = data.currentUser;
     });
   }
-
-  toggleNavbar(): void{
-    this.navbarOpen = !this.navbarOpen;
-  }
   cambiar(){    
     this.modalServices.mostrarModal = !this.modalServices.mostrarModal;
     console.log('llego');
   }
   eliminar(id: string): void{
     this.modalServices.data.emit(id);
+    // muestra el modal
     this.modalServices.mostrarModal = !this.modalServices.mostrarModal;
   }
   ngOnDestroy() {
