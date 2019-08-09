@@ -33,6 +33,16 @@ query Usuario($id: ID!) {
 }
 `;
 
+const actualizarUserMutation = gql`
+mutation updateUSer($id: ID, $input: UsuarioInput) {
+  usuario: updateUsuario(id:$id, input: $input) {
+    id
+    nombre
+    edad
+  }
+}
+`;
+
 @Component({
   selector: 'app-editar',
   templateUrl: './editar.component.html',
@@ -125,7 +135,7 @@ export class EditarComponent implements OnInit, OnDestroy {
 
   onSubmit(){
     console.log( this.formUsuario.value  );
-    
+    this.updateUsuario();
   }
   validaciones(data?: string){
     console.log(data);
@@ -139,6 +149,21 @@ export class EditarComponent implements OnInit, OnDestroy {
       telOEmail.clearValidators();
     }
     telOEmail.updateValueAndValidity();
+  }
+
+  updateUsuario(){
+    this.apollo.mutate({
+      mutation: actualizarUserMutation,
+      variables: {
+        id: this.id,
+        input: {nombre: this.formUsuario.get('nombre').value, edad: this.formUsuario.get('edad').value, password: this.formUsuario.get('comparar.password1').value}
+      }
+    }).subscribe(({ data }) => {
+      console.log(data);
+      this.router.navigate(['/']);
+    },(error) => {
+      console.log('there was an error sending the query', error);
+    });
   }
 
   ngOnDestroy() {

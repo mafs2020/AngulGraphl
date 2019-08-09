@@ -7,6 +7,7 @@
         <ul class="list-group">
           <li class="list-group-item">{{ usuario.nombre }}</li>
           <li class="list-group-item">{{ usuario.edad }}</li>
+          <!-- <li class="list-group-item">{{ usuario.id }}</li> -->
         </ul>
         <!-- <p class="card-text">{{ usuario.edad }}</p> -->
     </div>
@@ -18,7 +19,7 @@
     </div> -->
     <div class="card-footer text-white d-flex justify-content-between">
         <a [routerLink]="['/', usuario.id]" class="btn btn-secondary">Editar</a>
-        <a class="btn btn-danger">Eliminar</a>
+        <button class="btn btn-danger" (click)="eliminar(usuario.id)">Eliminar</button>
       </div>
   </div>
 </div>

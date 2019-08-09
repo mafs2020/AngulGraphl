@@ -3,6 +3,8 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { Subscription } from 'rxjs';
 import { IUsuario } from '../interfaces/IUsuario';
+import { ModalComponent } from '../modal/modal.component';
+import { ModalService } from 'src/app/services/modal.service';
 
 const Usuarios = gql`
 query TotalUsuarios {
@@ -28,7 +30,10 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   usuarios: IUsuario[] = [];
   total: number;
   private querySubscription: Subscription;
-  constructor(private apollo: Apollo) { }
+  constructor(
+    private apollo: Apollo,
+    private modalServices: ModalService
+    ) { }
 
   ngOnInit() {
     this.querySubscription = this.apollo.watchQuery<any>({
@@ -45,7 +50,14 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   toggleNavbar(): void{
     this.navbarOpen = !this.navbarOpen;
   }
-
+  cambiar(){    
+    this.modalServices.mostrarModal = !this.modalServices.mostrarModal;
+    console.log('llego');
+  }
+  eliminar(id: string): void{
+    this.modalServices.data.emit(id);
+    this.modalServices.mostrarModal = !this.modalServices.mostrarModal;
+  }
   ngOnDestroy() {
     this.querySubscription.unsubscribe();
   }
