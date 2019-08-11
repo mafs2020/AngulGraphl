@@ -1,5 +1,5 @@
 export interface IUsuario {
-    id: string
+    id?: string
     nombre: string,
     edad: number
 }

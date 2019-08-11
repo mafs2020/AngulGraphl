@@ -41,6 +41,8 @@ export class ModalComponent implements OnInit {
     this.modalServices.mostrarModal = !this.modalServices.mostrarModal;
   }
   mutationDeleteGrpahql(){
+    console.log( this.id );
+    
     this.apollo.mutate({
       mutation: EliminarUsuario,
       variables: {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, DoCheck, AfterContentInit, AfterViewChecked, AfterViewInit, AfterContentChecked } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { Subscription } from 'rxjs';
@@ -6,6 +6,7 @@ import { IUsuario } from '../interfaces/IUsuario';
 import { FormGroup, FormBuilder, Validators, AbstractControl, FormArray } from "@angular/forms";
 import { Router } from '@angular/router';
 import { debounceTime } from 'rxjs/operators';
+import { ModalService } from 'src/app/services/modal.service';
 
 const crearUsario = gql`
 mutation AddUSer($input: UsuarioInput) {
@@ -37,7 +38,9 @@ function compararPassword(c: AbstractControl): { [key: string]: boolean } | null
   templateUrl: './add-usuario.component.html',
   styleUrls: ['./add-usuario.component.css']
 })
-export class AddUsuarioComponent implements OnInit {
+export class AddUsuarioComponent implements OnInit, OnDestroy {
+//  OnChanges, DoCheck, AfterContentInit,
+// AfterContentChecked, AfterViewInit, AfterViewChecked {
   formUsuario: FormGroup;
   usuario: IUsuario;
   querySubscription: Subscription;
@@ -45,6 +48,7 @@ export class AddUsuarioComponent implements OnInit {
     private router: Router,
     private apollo: Apollo,
     private fb: FormBuilder,
+    private modalServices: ModalService
   ) { }
 
   ngOnInit() {
@@ -108,15 +112,61 @@ export class AddUsuarioComponent implements OnInit {
         input: {nombre: this.formUsuario.get('nombre').value, edad: this.formUsuario.get('edad').value, password: this.formUsuario.get('comparar.password1').value}
       }
     }).subscribe(({ data }) => {
-      console.log(data);
-      this.router.navigate(['/']);
+      window.location.replace("/");
+      this.modalServices.usuarioEmit.emit({id: data.usuario.id,nombre: data.usuario.nombre, edad: data.usuario.edad});
+      // this.router.navigate(['/']);
     },(error) => {
       console.log(error);
     });
   }
+// ngOnChanges()	{
+//   console.log('ngOnChanges()');
+  
+// }
+
+// ngDoCheck()	{
+//   console.log('ngDoCheck()');
+// }
+
+
+// ngAfterContentInit() {
+//   console.log('ngAfterContentInit()');
+// }
+
+// ngAfterContentChecked()	{
+//   console.log('ngAfterContentChecked()');
+// }
+
+
+// ngAfterViewInit()	{
+//   console.log('ngAfterViewInit()');
+  
+// }
+
+
+// ngAfterViewChecked() {
+//   console.log('ngAfterViewChecked()');
+// }
 
   ngOnDestroy() {
     // this.querySubscription.unsubscribe();
   }
 
 }
+
+
+// ngOnChanges()	
+
+// ngDoCheck()	
+
+
+// ngAfterContentInit()	
+
+
+// ngAfterContentChecked()	
+
+
+// ngAfterViewInit()	
+
+
+// ngAfterViewChecked()

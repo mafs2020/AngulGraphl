@@ -43,10 +43,12 @@ export class UsuariosComponent implements OnInit, OnDestroy {
     this.querySubscription = this.apollo.watchQuery<any>({
       query: Usuarios
     }).valueChanges.subscribe(({data, loading}) => {
-      console.log('aqui');
+      console.log('inicio valueChanges');
+      console.log(loading);
+      console.log('inicio valueChanges');
+
       this.usuarios = data.usuarios;
       this.total = data.total;
-      console.log(data);
       this.loading = loading;
       this.currentUser = data.currentUser;
     });
