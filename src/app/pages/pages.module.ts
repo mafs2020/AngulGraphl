@@ -11,7 +11,6 @@ import { NabvarComponent } from './nabvar/nabvar.component';
 import { EditarComponent } from './editar/editar.component';
 import { ModalComponent } from './modal/modal.component';
 import { AddUsuarioComponent } from './add-usuario/add-usuario.component';
-import { PruebaXComponent } from './prueba-x/prueba-x.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +20,6 @@ import { PruebaXComponent } from './prueba-x/prueba-x.component';
     EditarComponent,
     ModalComponent,
     AddUsuarioComponent,
-    PruebaXComponent,
   ],
   imports: [
     CommonModule,
